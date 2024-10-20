@@ -1,0 +1,27 @@
+secret-manager-api/
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com.example.secretmanager/
+│   │   │       ├── SecretManagerApplication.java
+│   │   │       ├── controller/
+│   │   │       │   ├── AuthController.java
+│   │   │       │   ├── SecretController.java
+│   │   │       ├── model/
+│   │   │       │   ├── User.java
+│   │   │       │   ├── Secret.java
+│   │   │       ├── repository/
+│   │   │       │   ├── UserRepository.java
+│   │   │       │   ├── SecretRepository.java
+│   │   │       ├── service/
+│   │   │       │   ├── UserService.java
+│   │   │       │   ├── SecretService.java
+│   │   │       ├── security/
+│   │   │       │   ├── JWTAuthFilter.java
+│   │   │       │   ├── JWTUtil.java
+│   │   │       │   ├── SecurityConfig.java
+│   │   └── resources/
+│   │       └── application.properties
+├── pom.xml
+└── README.md
