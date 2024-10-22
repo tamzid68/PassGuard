@@ -25,10 +25,12 @@ public class JWTUtil {
     }
 
     public String extractUsername(String token) {
+
         return getClaims(token).getSubject();
     }
 
     public boolean isTokenExpired(String token) {
+
         return getClaims(token).getExpiration().before(new Date());
     }
 

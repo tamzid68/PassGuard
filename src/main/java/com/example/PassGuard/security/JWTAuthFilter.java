@@ -18,15 +18,7 @@ import java.io.IOException;
 
 @Component
 public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
-  /*  @Autowired
-    private JWTUtil jwtUtil;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    @Lazy // Ensure the authentication manager is lazily initialized to break the cycle
-    private AuthenticationManager authenticationManager;*/
     private final JWTUtil jwtUtil;
     private final UserDetailsService userDetailsService;
     private final AuthenticationManager authenticationManager;
@@ -35,6 +27,7 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
         this.authenticationManager = authenticationManager;
+        setFilterProcessesUrl("/login");
     }
 
 
@@ -56,7 +49,7 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
             // Validate the token
-            if (jwtUtil.validateToken(token, String.valueOf(userDetails))) {
+            if (jwtUtil.validateToken(token, userDetails.getUsername())) {
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authenticationToken);
