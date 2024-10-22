@@ -17,6 +17,7 @@ public class SecretService implements SecretService_interface {
     @Autowired
     private AES256TextEncryptor encryptor;
 
+    @Override
     public Secret addSecret(Secret secret, User user) {
         secret.setUser(user);
         secret.setEncryptedPassword(encryptor.encrypt(secret.getEncryptedPassword()));
@@ -24,10 +25,12 @@ public class SecretService implements SecretService_interface {
     }
 
     public List<Secret> getSecrets(User user) {
+
         return secretRepository.findByUserId(user.getId());
     }
 
     public void deleteSecret(Long id) {
+
         secretRepository.deleteById(id);
     }
 }
