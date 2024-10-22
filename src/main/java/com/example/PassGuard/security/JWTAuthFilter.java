@@ -31,7 +31,7 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
     private final UserDetailsService userDetailsService;
     private final AuthenticationManager authenticationManager;
     @Autowired
-    public JWTAuthFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, AuthenticationManager authenticationManager) {
+    public JWTAuthFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, @Lazy AuthenticationManager authenticationManager) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
         this.authenticationManager = authenticationManager;
