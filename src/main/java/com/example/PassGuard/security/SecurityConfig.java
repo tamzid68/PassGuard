@@ -2,6 +2,7 @@ package com.example.PassGuard.security;
 
 import com.example.PassGuard.service.CustomUserDetailsService;
 import com.example.PassGuard.service.UserService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,17 +18,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
+@Getter
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-    @Autowired
+//    @Autowired
+//    private UserService userService;
+
     private UserService userService;
 
-    private final JWTAuthFilter jwtAuthFilter;
-
     @Autowired
-    public SecurityConfig(JWTAuthFilter jwtAuthFilter) {
+    public void setUserService(@Lazy UserService userService) {
+        this.userService = userService;
+    }
+
+//    private final JWTAuthFilter jwtAuthFilter;
+//
+//    @Autowired
+//    public SecurityConfig(JWTAuthFilter jwtAuthFilter) {
+//        this.jwtAuthFilter = jwtAuthFilter;
+//    }
+    private JWTAuthFilter jwtAuthFilter;
+    @Autowired
+    public void setJwtAuthFilter(@Lazy JWTAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
