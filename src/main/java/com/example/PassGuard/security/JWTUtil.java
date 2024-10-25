@@ -25,10 +25,12 @@ public class JWTUtil {
     }
 
     public String extractUsername(String token) {
+
         return getClaims(token).getSubject();
     }
 
     public boolean isTokenExpired(String token) {
+
         return getClaims(token).getExpiration().before(new Date());
     }
 
@@ -47,7 +49,7 @@ public class JWTUtil {
     private Claims getClaims(String token) {
         try {
             return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        } catch (ExpiredJwtException | MalformedJwtException | SignatureException e) {
+        } catch (JwtException e) {
             throw new IllegalStateException("Invalid JWT token", e);
         }
     }

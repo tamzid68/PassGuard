@@ -3,8 +3,6 @@ package com.example.PassGuard.service;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +17,7 @@ public class UserService implements UserService_Interface{
     private final PasswordEncoder passwordEncoder;
 
     public UserService() {
+
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
@@ -31,8 +30,17 @@ public class UserService implements UserService_Interface{
 
     @Override
     public Optional<User> findByUsername(String username){
-        //User user = userRepository.findByUsername(username).
-          //      orElseThrow(()-> new RuntimeException("User Dose not Exists"));
+        User user = userRepository.findByUsername(username).
+                orElseThrow(()-> new RuntimeException("User Dose not Exists"));
         return userRepository.findByUsername(username);
     }
+
+    public User loginUser(String username, String password) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user; // Successful login
+        }
+        return null; // Login failed
+    }
+
 }

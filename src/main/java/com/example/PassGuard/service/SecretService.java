@@ -13,10 +13,16 @@ import java.util.List;
 public class SecretService implements SecretService_interface {
     @Autowired
     private SecretRepository secretRepository;
+    private final AES256TextEncryptor encryptor;
+    /*@Autowired
+    private AES256TextEncryptor encryptor;*/
 
     @Autowired
-    private AES256TextEncryptor encryptor;
+    public SecretService(AES256TextEncryptor encryptor) {
+        this.encryptor = encryptor;
+    }
 
+    @Override
     public Secret addSecret(Secret secret, User user) {
         secret.setUser(user);
         secret.setEncryptedPassword(encryptor.encrypt(secret.getEncryptedPassword()));
@@ -24,10 +30,12 @@ public class SecretService implements SecretService_interface {
     }
 
     public List<Secret> getSecrets(User user) {
+
         return secretRepository.findByUserId(user.getId());
     }
 
     public void deleteSecret(Long id) {
+
         secretRepository.deleteById(id);
     }
 }
