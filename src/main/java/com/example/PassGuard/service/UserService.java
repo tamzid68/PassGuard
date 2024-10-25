@@ -2,23 +2,24 @@ package com.example.PassGuard.service;
 
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.UserRepository;
+import com.example.PassGuard.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
 @Service
 public class UserService implements UserService_Interface{
-    @Autowired
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JWTUtil jwtUtil;
 
-    public UserService() {
-
-        this.passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, JWTUtil jwtUtil) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
     }
 
 
@@ -35,10 +36,12 @@ public class UserService implements UserService_Interface{
         return userRepository.findByUsername(username);
     }
 
-    public User loginUser(String username, String password) {
-        User user = userRepository.findByUsername(username).orElse(null);
+    @Override
+    public String loginUser(String username, String password) {
+        User user = userRepository.findByUsername(username).
+                orElseThrow(()-> new RuntimeException("User Dose not Exists"));
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            return user; // Successful login
+            return jwtUtil.generateToken(user.getUsername()); // Return token to client
         }
         return null; // Login failed
     }

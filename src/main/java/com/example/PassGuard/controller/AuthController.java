@@ -1,15 +1,16 @@
 package com.example.PassGuard.controller;
 
+import com.example.PassGuard.dto.LoginRequest;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.security.JWTUtil;
 import com.example.PassGuard.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @RestController
@@ -29,15 +30,14 @@ public class AuthController {
         return ResponseEntity.ok(registeredUser);
     }
 
-    
 
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password) {
-        System.out.println(username+"  "+password);
-        User user = userService.loginUser(username, password);
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        System.out.println("username: " + loginRequest.getUsername() + " password: " + loginRequest.getPassword());
+        Object user = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
         if (user != null) {
-            return "Login successful";
+            return ResponseEntity.ok("Login successful");
         }
-        return "Login failed";
+        return ResponseEntity.status(403).body("Login failed");
     }
 }
