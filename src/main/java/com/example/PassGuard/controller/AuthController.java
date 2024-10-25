@@ -8,10 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -32,15 +29,15 @@ public class AuthController {
         return ResponseEntity.ok(registeredUser);
     }
 
+    
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody User user) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-
-        Optional<User> userDetails = userService.findByUsername(user.getUsername());
-        String token = jwtUtil.generateToken(user.getUsername());
-
-        return ResponseEntity.ok(token);
+    public String login(@RequestParam String username, @RequestParam String password) {
+        System.out.println(username+"  "+password);
+        User user = userService.loginUser(username, password);
+        if (user != null) {
+            return "Login successful";
+        }
+        return "Login failed";
     }
 }

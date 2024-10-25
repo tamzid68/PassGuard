@@ -34,4 +34,13 @@ public class UserService implements UserService_Interface{
                 orElseThrow(()-> new RuntimeException("User Dose not Exists"));
         return userRepository.findByUsername(username);
     }
+
+    public User loginUser(String username, String password) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user; // Successful login
+        }
+        return null; // Login failed
+    }
+
 }
