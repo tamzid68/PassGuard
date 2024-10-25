@@ -26,7 +26,7 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
     public JWTAuthFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, @Lazy AuthenticationManager authenticationManager) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
-
+        this.setAuthenticationManager(authenticationManager); // Updated line
         setFilterProcessesUrl("/auth/login");
     }
 

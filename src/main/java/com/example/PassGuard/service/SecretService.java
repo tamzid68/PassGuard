@@ -13,9 +13,14 @@ import java.util.List;
 public class SecretService implements SecretService_interface {
     @Autowired
     private SecretRepository secretRepository;
+    private final AES256TextEncryptor encryptor;
+    /*@Autowired
+    private AES256TextEncryptor encryptor;*/
 
     @Autowired
-    private AES256TextEncryptor encryptor;
+    public SecretService(AES256TextEncryptor encryptor) {
+        this.encryptor = encryptor;
+    }
 
     @Override
     public Secret addSecret(Secret secret, User user) {
