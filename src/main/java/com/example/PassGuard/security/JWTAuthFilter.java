@@ -34,7 +34,14 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
+        // Bypass JWT validation for /auth/login and /auth/register
+        String path = request.getServletPath();
+        if (path.equals("/auth/login") || path.equals("/auth/register")) {
+            chain.doFilter(request, response);
+            return;
+        }
 
+        // Extract JWT token from Authorization header
         String authorizationHeader = request.getHeader("Authorization");
         String token = null;
         String username = null;
