@@ -49,7 +49,7 @@ public class JWTUtil {
     private Claims getClaims(String token) {
         try {
             return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        } catch (ExpiredJwtException | MalformedJwtException | SignatureException e) {
+        } catch (JwtException e) {
             throw new IllegalStateException("Invalid JWT token", e);
         }
     }

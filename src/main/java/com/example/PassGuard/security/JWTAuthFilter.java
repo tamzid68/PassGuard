@@ -19,16 +19,17 @@ import java.io.IOException;
 @Component
 public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final JWTUtil jwtUtil;
+   private final JWTUtil jwtUtil;
     private final UserDetailsService userDetailsService;
-    private final AuthenticationManager authenticationManager;
+
     @Autowired
     public JWTAuthFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, @Lazy AuthenticationManager authenticationManager) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
-        this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("/login");
+        this.setAuthenticationManager(authenticationManager); // Updated line
+        setFilterProcessesUrl("/auth/login");
     }
+
 
 
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -40,8 +41,8 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
 
         // Extract token and username from the Authorization header
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            token = authorizationHeader.substring(7);
-            username = jwtUtil.extractUsername(token);
+            token = authorizationHeader.substring(7);// Extract JWT token
+            username = jwtUtil.extractUsername(token);// Extract username from token
         }
 
         // Check if username is not null and there's no authentication already in the security context
