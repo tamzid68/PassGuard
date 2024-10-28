@@ -34,8 +34,7 @@ public class SecurityConfig{
 
 
   //  @Autowired
-    public SecurityConfig(@Lazy UserService userService, @Lazy JWTAuthFilter jwtAuthFilter) {
-        //this.userService = userService;
+    public SecurityConfig(@Lazy JWTAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
