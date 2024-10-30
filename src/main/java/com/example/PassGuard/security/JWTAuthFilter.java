@@ -13,11 +13,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @Component
-public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthFilter extends OncePerRequestFilter {
 
    private final JWTUtil jwtUtil;
     private final UserDetailsService userDetailsService;
@@ -26,8 +27,8 @@ public class JWTAuthFilter extends UsernamePasswordAuthenticationFilter {
     public JWTAuthFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService, @Lazy AuthenticationManager authenticationManager) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
-        this.setAuthenticationManager(authenticationManager); // Updated line
-        setFilterProcessesUrl("/auth/login");
+        /*this.setAuthenticationManager(authenticationManager); // Updated line
+        setFilterProcessesUrl("/auth/login");*/
     }
 
 

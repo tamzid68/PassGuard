@@ -25,6 +25,7 @@ public class UserService implements UserService_Interface{
 
     @Override
     public User registerUser(User user){
+        System.out.println(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
@@ -38,12 +39,19 @@ public class UserService implements UserService_Interface{
 
     @Override
     public String loginUser(String username, String password) {
-        User user = userRepository.findByUsername(username).
+        /*User user = userRepository.findByUsername(username).
                 orElseThrow(()-> new RuntimeException("User Dose not Exists"));
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             return jwtUtil.generateToken(user.getUsername()); // Return token to client
         }
-        return null; // Login failed
+        return null; // Login failed*/
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User Does Not Exist"));
+        System.out.println(password);
+        if (passwordEncoder.matches(password, user.getPassword())) {
+            return jwtUtil.generateToken(user.getUsername()); // Return token to client
+        }
+        throw new RuntimeException("Invalid username or password");
     }
 
 }
