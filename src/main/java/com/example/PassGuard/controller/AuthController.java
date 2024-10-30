@@ -34,7 +34,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        
+
         try {
             // Authenticate using the custom login method in UserService
             String token = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
