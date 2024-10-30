@@ -84,6 +84,7 @@ public class SecurityConfig{
                 .csrf(csrf -> csrf.disable()) // Disabling CSRF
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/register", "/auth/login").permitAll() // Use 'requestMatchers' instead of 'antMatchers'
+                        .requestMatchers("/secret/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
