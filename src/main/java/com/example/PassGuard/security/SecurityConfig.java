@@ -34,8 +34,7 @@ public class SecurityConfig{
 
 
   //  @Autowired
-    public SecurityConfig(@Lazy UserService userService, @Lazy JWTAuthFilter jwtAuthFilter) {
-        //this.userService = userService;
+    public SecurityConfig(@Lazy JWTAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
 
@@ -85,6 +84,7 @@ public class SecurityConfig{
                 .csrf(csrf -> csrf.disable()) // Disabling CSRF
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/register", "/auth/login").permitAll() // Use 'requestMatchers' instead of 'antMatchers'
+                        .requestMatchers("/secrets/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
