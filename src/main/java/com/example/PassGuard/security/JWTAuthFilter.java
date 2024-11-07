@@ -49,8 +49,13 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
         // Extract token and username from the Authorization header
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            System.out.println("Authorization header found: " + authorizationHeader);
+
             token = authorizationHeader.substring(7);// Extract JWT token
             username = jwtUtil.extractUsername(token);// Extract username from token
+
+
+            System.out.println("Extracted username: " + username);
         }
 
         // Check if username is not null and there's no authentication already in the security context

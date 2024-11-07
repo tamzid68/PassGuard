@@ -1,6 +1,7 @@
 package com.example.PassGuard.controller;
 
 
+import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.service.SecretService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/secrets")
@@ -29,9 +31,15 @@ public class SecretController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Secret>> getSecrets(@RequestParam String username) {
-        User user = userService.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
-        return ResponseEntity.ok(secretService.getSecrets(user));
+    public ResponseEntity<List<SecretDto>> getSecrets(@RequestParam String username) {
+        User user = userService.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        List<SecretDto> secretDTOs = user.getSecrets().stream()
+                .map(secretService::toSecretDTO)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(secretDTOs);
     }
 
     @DeleteMapping("/{id}")
