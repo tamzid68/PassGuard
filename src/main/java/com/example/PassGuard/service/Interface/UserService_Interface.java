@@ -1,4 +1,4 @@
-package com.example.PassGuard.service;
+package com.example.PassGuard.service.Interface;
 
 import com.example.PassGuard.model.User;
 
