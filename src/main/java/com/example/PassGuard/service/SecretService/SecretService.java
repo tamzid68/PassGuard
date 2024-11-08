@@ -4,9 +4,9 @@ import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.SecretRepository;
+import org.jasypt.util.text.AES256TextEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.jasypt.util.text.AES256TextEncryptor;
 
 @Service
 public class SecretService implements SecretService_interface {

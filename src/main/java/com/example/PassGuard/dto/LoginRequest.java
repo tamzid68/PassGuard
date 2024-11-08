@@ -1,6 +1,8 @@
 package com.example.PassGuard.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @NoArgsConstructor

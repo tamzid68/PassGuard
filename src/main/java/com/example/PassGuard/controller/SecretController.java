@@ -4,21 +4,17 @@ package com.example.PassGuard.controller;
 import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
 import com.example.PassGuard.model.User;
-import com.example.PassGuard.service.SecretService.SecretService;
 import com.example.PassGuard.service.SecretService.SecretService_interface;
-import com.example.PassGuard.service.UserService.UserService;
 import com.example.PassGuard.service.UserService.UserService_Interface;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("${api.prefix}/secrets")
+@RequestMapping("/secrets")
 public class SecretController {
 
 //    @Autowired
