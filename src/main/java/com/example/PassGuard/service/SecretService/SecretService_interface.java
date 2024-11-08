@@ -1,4 +1,4 @@
-package com.example.PassGuard.service.Interface;
+package com.example.PassGuard.service.SecretService;
 
 import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
@@ -10,4 +10,5 @@ public interface SecretService_interface {
     void deleteSecret(Long id);
     SecretDto toSecretDTO(Secret secret);
 
+    String decryptPassword(String encryptedPassword);
 }

@@ -3,26 +3,28 @@ package com.example.PassGuard.controller;
 import com.example.PassGuard.dto.LoginRequest;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.security.JWTUtil;
-import com.example.PassGuard.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.PassGuard.service.UserService.UserService_Interface;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
-
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("${api.prefix}/auth")
 public class AuthController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private JWTUtil jwtUtil;
-    @Autowired
-    private AuthenticationManager authenticationManager;
+//    @Autowired
+//    private UserService_Interface userService;
+//    @Autowired
+//    private JWTUtil jwtUtil;
+//    @Autowired
+//    private AuthenticationManager authenticationManager;
+
+    private final UserService_Interface userService;
+    private final AuthenticationManager authenticationManager;
+    private final JWTUtil jwtUtil;
+
 
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user){
