@@ -1,4 +1,4 @@
-package com.example.PassGuard.service.Interface;
+package com.example.PassGuard.service.EncryptionConfig;
 
 import org.jasypt.util.text.AES256TextEncryptor;
 

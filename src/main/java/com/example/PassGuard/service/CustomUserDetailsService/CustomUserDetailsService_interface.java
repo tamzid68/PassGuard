@@ -1,4 +1,4 @@
-package com.example.PassGuard.service.Interface;
+package com.example.PassGuard.service.CustomUserDetailsService;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
