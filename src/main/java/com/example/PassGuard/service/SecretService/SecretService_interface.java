@@ -10,4 +10,5 @@ public interface SecretService_interface {
     void deleteSecret(Long id);
     SecretDto toSecretDTO(Secret secret);
 
+    String decryptPassword(String encryptedPassword);
 }

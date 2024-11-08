@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+//@Data
+@Getter
+@Setter
 public class Secret {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

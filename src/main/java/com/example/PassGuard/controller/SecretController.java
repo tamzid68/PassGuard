@@ -5,7 +5,10 @@ import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.service.SecretService.SecretService;
+import com.example.PassGuard.service.SecretService.SecretService_interface;
 import com.example.PassGuard.service.UserService.UserService;
+import com.example.PassGuard.service.UserService.UserService_Interface;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,19 +16,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/secrets")
+@RequestMapping("${api.prefix}/secrets")
 public class SecretController {
 
-    @Autowired
-    private SecretService secretService;
+//    @Autowired
+//    private SecretService secretService;
+//
+//    @Autowired
+//    private UserService userService;
 
-    @Autowired
-    private UserService userService;
+    private final SecretService_interface secretService;
+    private final UserService_Interface userService;
 
     @PostMapping
     public ResponseEntity<?> addSecret(@RequestBody Secret secret, @RequestParam String username) {
-        User user = userService.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userService.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
         secretService.addSecret(secret, user);
         return ResponseEntity.ok("Secret saved successfully");
     }
@@ -35,9 +43,10 @@ public class SecretController {
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        List<SecretDto> secretDTOs = user.getSecrets().stream()
-                .map(secretService::toSecretDTO)
-                .collect(Collectors.toList());
+//        List<SecretDto> secretDTOs = user.getSecrets().stream()
+//                .map(secretService::toSecretDTO)
+//                .collect(Collectors.toList());
+        List<SecretDto> secretDTOs = userService.convertToDtos(user);
 
         return ResponseEntity.ok(secretDTOs);
     }
