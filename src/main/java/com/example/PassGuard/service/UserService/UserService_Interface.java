@@ -1,7 +1,9 @@
-package com.example.PassGuard.service.Interface;
+package com.example.PassGuard.service.UserService;
 
+import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService_Interface {
@@ -12,4 +14,5 @@ public interface UserService_Interface {
     String loginUser(String username, String password);
 
 
+    List<SecretDto> convertToDtos(User user);
 }
