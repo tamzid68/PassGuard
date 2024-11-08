@@ -1,6 +1,6 @@
-package com.example.PassGuard.service;
+package com.example.PassGuard.service.EncryptionConfig;
 
-import com.example.PassGuard.service.Interface.EncryptionConfig_Interface;
+import EncryptionConfig_Interface;
 import org.jasypt.util.text.AES256TextEncryptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

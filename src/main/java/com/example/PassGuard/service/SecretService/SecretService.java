@@ -1,10 +1,10 @@
-package com.example.PassGuard.service;
+package com.example.PassGuard.service.SecretService;
 
 import com.example.PassGuard.dto.SecretDto;
 import com.example.PassGuard.model.Secret;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.SecretRepository;
-import com.example.PassGuard.service.Interface.SecretService_interface;
+import SecretService_interface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.jasypt.util.text.AES256TextEncryptor;

@@ -1,4 +1,4 @@
-package com.example.PassGuard.service;
+package com.example.PassGuard.service.CustomUserDetailsService;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

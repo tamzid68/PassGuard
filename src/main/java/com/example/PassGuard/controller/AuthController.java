@@ -3,16 +3,12 @@ package com.example.PassGuard.controller;
 import com.example.PassGuard.dto.LoginRequest;
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.security.JWTUtil;
-import com.example.PassGuard.service.UserService;
+import com.example.PassGuard.service.UserService.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")

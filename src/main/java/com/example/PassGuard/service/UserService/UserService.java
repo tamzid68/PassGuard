@@ -1,9 +1,8 @@
-package com.example.PassGuard.service;
+package com.example.PassGuard.service.UserService;
 
 import com.example.PassGuard.model.User;
 import com.example.PassGuard.repository.UserRepository;
 import com.example.PassGuard.security.JWTUtil;
-import com.example.PassGuard.service.Interface.UserService_Interface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
