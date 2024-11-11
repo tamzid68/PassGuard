@@ -1,9 +1,26 @@
-Included Functionalities:
+# PassGuard
 
-1.User Registration: Users can register with a username and password.
+PassGuard is a secure password manager built using Spring Boot. It allows users to store, manage, and retrieve secrets (such as passwords) in a secure manner, supporting JWT authentication and encryption for data security.
 
-2.User Login: Users can log in by providing their username and password.
+## Features
+- User registration and authentication using JWT.
+- Secure storage of secrets with encryption.
+- Ability to add, retrieve, and delete secrets for each user.
+- RESTful API for interacting with the system.
 
-3.Save Secrets (Passwords): Users can save passwords (encrypted).
+## Technologies Used
+- **Spring Boot**: Backend framework.
+- **Spring Security**: Authentication and authorization.
+- **MySQL**: Database to store user and secret data.
+- **Jasypt**: For encrypting secret data.
+- **JWT**: For token-based authentication.
 
-4.List Secrets: Users can retrieve a list of saved passwords.
+## Getting Started
+
+### Prerequisites
+Make sure you have the following installed:
+- Java 17 or higher
+- Maven
+- MySQL Database
+
+
