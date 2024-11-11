@@ -24,3 +24,9 @@ Make sure you have the following installed:
 - MySQL Database
 
 
+## API Endpoints
+- POST /register: Register a new user.
+- POST /login: Authenticate and get a JWT token.
+- POST /secrets: Add a secret.
+- GET /secrets: Get a list of secrets for a user.
+- DELETE /secrets/{id}: Delete a secret by ID.
