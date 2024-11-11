@@ -1,0 +1,45 @@
+PassGuard
+├── .idea/
+├── .mvn/
+├── documentation/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com.example.PassGuard/
+│   │   │       ├── controller/
+│   │   │       │   ├── AuthController
+│   │   │       │   └── SecretController
+│   │   │       ├── dto/
+│   │   │       │   ├── LoginRequest
+│   │   │       │   └── SecretDto
+│   │   │       ├── model/
+│   │   │       │   ├── Secret
+│   │   │       │   └── User
+│   │   │       ├── repository/
+│   │   │       │   ├── SecretRepository
+│   │   │       │   └── UserRepository
+│   │   │       ├── security/
+│   │   │       │   ├── JWTAuthFilter
+│   │   │       │   ├── JWTUtil
+│   │   │       │   └── SecurityConfig
+│   │   │       └── service/
+│   │   │           ├── CustomUserDetailsService/
+│   │   │           │   ├── CustomUserDetailsService
+│   │   │           │   └── CustomUserDetailsService_Interface
+│   │   │           ├── EncryptionConfig/
+│   │   │           │   ├── EncryptionConfig
+│   │   │           │   └── EncryptionConfig_Interface
+│   │   │           ├── SecretService/
+│   │   │           │   ├── SecretService
+│   │   │           │   └── SecretService_Interface
+│   │   │           └── UserService/
+│   │   │               ├── UserService
+│   │   │               └── UserService_Interface
+│   │   │       └── PassGuardApplication
+│   ├── resources/
+├── test/
+├── target/
+├── .gitattributes
+├── .gitignore
+├── HELP.md
+└── mvnw
