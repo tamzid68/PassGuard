@@ -1,3 +1,5 @@
+ ### release v1.3.0
+
 # PassGuard
 
 PassGuard is a secure password manager built using Spring Boot. It allows users to store, manage, and retrieve secrets (such as passwords) in a secure manner, supporting JWT authentication and encryption for data security.
@@ -30,3 +32,13 @@ Make sure you have the following installed:
 - POST /secrets: Add a secret.
 - GET /secrets: Get a list of secrets for a user.
 - DELETE /secrets/{id}: Delete a secret by ID.
+
+
+## Class Diagram
+
+![PassGuard-Class Dirgram drawio](https://github.com/user-attachments/assets/2cc31db6-5eaa-4993-ba4b-10cabb1443e8)
+
+
+## Database Diagram
+
+![PassGuard Diagram drawio](https://github.com/user-attachments/assets/f756570c-3240-41b0-b4af-ec1a9bfe19aa)
