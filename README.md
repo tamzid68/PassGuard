@@ -30,3 +30,7 @@ Make sure you have the following installed:
 - POST /secrets: Add a secret.
 - GET /secrets: Get a list of secrets for a user.
 - DELETE /secrets/{id}: Delete a secret by ID.
+
+## Class Diagram
+
+![PassGuard-Class Dirgram drawio](https://github.com/user-attachments/assets/2cc31db6-5eaa-4993-ba4b-10cabb1443e8)
