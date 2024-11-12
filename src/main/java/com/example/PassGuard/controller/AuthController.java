@@ -25,6 +25,12 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User user){
+        // check if username or password is empty
+        if(user.getUsername() == null || user.getUsername().isEmpty())
+            return ResponseEntity.badRequest().body("Username cannot be empty");
+        if(user.getPassword() == null || user.getPassword().isEmpty())
+            return ResponseEntity.badRequest().body("Password cannot be empty");
+
         try {
             userService.registerUser(user);
             return ResponseEntity.ok("User registered successfully");
@@ -36,6 +42,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        // check if username or password is empty
+        if(loginRequest.getUsername() == null || loginRequest.getUsername().isEmpty())
+            return ResponseEntity.badRequest().body("Username cannot be empty");
+        if(loginRequest.getPassword() == null || loginRequest.getPassword().isEmpty())
+            return ResponseEntity.badRequest().body("Password cannot be empty");
 
         try {
             // Authenticate using the custom login method in UserService

@@ -28,6 +28,12 @@ public class SecretController {
 
     @PostMapping
     public ResponseEntity<?> addSecret(@RequestBody Secret secret, @RequestParam String username) {
+        //check serviceName and password can't be empty
+        if(secret.getServiceName() == null || secret.getServiceName().isEmpty())
+            return ResponseEntity.badRequest().body("Service name cannot be empty");
+        if(secret.getEncryptedPassword() == null || secret.getEncryptedPassword().isEmpty())
+            return ResponseEntity.badRequest().body("Password cannot be empty");
+
         User user = userService.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         secretService.addSecret(secret, user);
