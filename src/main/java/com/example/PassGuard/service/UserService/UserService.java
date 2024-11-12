@@ -32,10 +32,14 @@ public class UserService implements UserService_Interface {
 
 
     @Override
-    public User registerUser(User user){
-        System.out.println(user.getPassword());
+    public void registerUser(User user) throws Exception {
+        //check if username already exists
+        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+            throw new Exception("Username already exists");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
     @Override
